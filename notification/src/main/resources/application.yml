@@ -1,8 +1,35 @@
 spring:
   application:
     name: "notification"
+  #########################
+  #       DATABASE
+  #########################
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  profiles:
+    active: local
 
+accounts:
+  message: "Card server message 1234"
 
+#########################
+#       SERVER
+#########################
+server:
+  port: 8082
+  url: "http://localhost:${server.port}"
+  version: "1.0"
+
+#########################
+#       EUREKA
+#########################
 eureka:
   client:
     serviceUrl:

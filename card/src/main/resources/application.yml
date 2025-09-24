@@ -1,7 +1,26 @@
 spring:
   application:
     name: "card"
+  #########################
+  #       DATABASE
+  #########################
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  profiles:
+    active: local
+accounts:
+  message: "Card server message 1234"
 
+#########################
+#       EUREKA
+#########################
 eureka:
   client:
     serviceUrl:
@@ -10,3 +29,13 @@ eureka:
     register-with-eureka: true
   instance:
     preferIpAddress: true
+
+#########################
+#       SERVER
+#########################
+server:
+  port: 8081
+  url: "http://localhost:${server.port}"
+  version: "1.0"
+
+

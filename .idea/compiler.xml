@@ -16,8 +16,8 @@
     <bytecodeTargetLevel>
       <module name="card" target="17" />
       <module name="eurekaserver" target="17" />
-      <module name="notification" target="1.6" />
-      <module name="profile" target="1.6" />
+      <module name="notification" target="17" />
+      <module name="profile" target="17" />
       <module name="transaction" target="17" />
     </bytecodeTargetLevel>
   </component>
