@@ -37,3 +37,30 @@ eureka:
     register-with-eureka: true
   instance:
     preferIpAddress: true
+
+#########################
+#       ACTUATOR
+#########################
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        # include: health, info, ... (bu usulda aloxida-aloxida chiqarishimiz mumkin)
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: "profile"
+    description: "profile microservice card application"
+    version: "1.0.0"
