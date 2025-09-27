@@ -55,9 +55,8 @@ public class CardController {
     }
 
     @GetMapping("/phone/{phoneNumber}")
-    public ResponseEntity<List<CardDTO>> getCardsByPhoneNumber(@RequestHeader("correlation-id") String correlationId,
-                                                               @PathVariable String phoneNumber) {
-        log.info("Get cards by phone number  = {}, correlationId = {}", phoneNumber, correlationId);
+    public ResponseEntity<List<CardDTO>> getCardsByPhoneNumber(@PathVariable String phoneNumber) {
+        log.info("Get cards by phone number  = {}", phoneNumber);
         List<CardDTO> cards = cardService.getCardsByPhoneNumber(phoneNumber);
         return ResponseEntity.ok(cards);
     }
