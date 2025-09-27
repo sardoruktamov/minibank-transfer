@@ -1,0 +1,32 @@
+### Create profile
+POST localhost:8083/api/v1/profile
+Content-Type: application/json
+
+{
+  "name": "Toshmat",
+  "surname": "Toshmatov",
+  "phoneNumber": "998910171212",
+  "password": "123456",
+  "roleList": ["ROLE_ADMIN","ROLE_ADMIN"]
+
+}
+
+
+### Profile pagination
+GET localhost:8072/api/v1/profile/pagination
+
+
+### Profile detail
+GET localhost:8083/api/v1/profile/6691aef8-d2e1-483d-aca0-cbfdce4eaf0e/detail
+
+
+### Using Gateway - Profile detail
+GET localhost:8072/profile/api/v1/profile/c36fc968-08e0-4927-b13d-43793eb6dd34/detail
+
+### Using Gateway - Profile detail 2
+GET localhost:8072/api/v1/profile/c36fc968-08e0-4927-b13d-43793eb6dd34/detail
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiI5OTg5MTAxNzEyMzIxIiwic3ViIjoiMzdkNWY5ZTAtNDNjMC00MGU2LWI1MDEtZjQ3ZWQ0NzZlYTAyIiwiaWF0IjoxNzU2OTY4NzE1LCJleHAiOjE3NTcwNTUxMTV9.ZhbWkjE0r5jtR6y-scNXfKFEqQwgFopmq_CWJ4U1HqNm6ns1GcOYRO-M-3Zh3gemyCZaWRb1EhjsUuOM2vzVWg
+
+
+### Using Gateway - Profile get message
+GET localhost:8072/api/v1/profile/message
