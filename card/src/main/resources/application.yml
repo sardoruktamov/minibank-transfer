@@ -15,6 +15,11 @@ spring:
     show-sql: true
   profiles:
     active: local
+  #### FALLBACK
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 accounts:
   message: "Card server message 1234"
 
@@ -64,4 +69,5 @@ info:
     name: "card"
     description: "CARD microservice card application"
     version: "1.0.0"
+
 

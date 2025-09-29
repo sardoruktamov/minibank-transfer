@@ -13,6 +13,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  #### FALLBACK
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
   profiles:
     active: local
 
