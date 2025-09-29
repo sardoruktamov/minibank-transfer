@@ -31,6 +31,9 @@ public class ProfileService {
     @Autowired
     private CardFeignClient cardFeignClient;
 
+    @Autowired
+    private NotificationFeignClient notificationFeignClient;
+
     public ProfileDTO create(ProfileDTO profile) {
         Optional<ProfileEntity> optional = profileRepository.findByPhoneNumberAndVisibleIsTrue(profile.getPhoneNumber());
         if (optional.isPresent()) {
@@ -192,7 +195,8 @@ public class ProfileService {
         ResponseEntity<List<CardDTO>> cardListResponse = cardFeignClient.getCardsByPhoneNumber(entity.getPhoneNumber());
         dto.setCardList(cardListResponse.getBody());
         // set notification list
-
+        ResponseEntity<List<NotificationDTO>> nonifListResponse = notificationFeignClient.getNotificationsByPhoneNumber(entity.getPhoneNumber().trim());
+        dto.setNotificationList(nonifListResponse.getBody());
         return dto;
     }
 }
