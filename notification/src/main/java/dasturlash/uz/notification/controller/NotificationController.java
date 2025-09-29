@@ -31,9 +31,8 @@ public class NotificationController {
     }
 
     @GetMapping("/{phoneNumber}")
-    public ResponseEntity<List<NotificationDTO>> getNotificationsByPhoneNumber(@RequestHeader("correlation-id") String correlationId,
-                                                                               @PathVariable String phoneNumber) {
-        log.info("Get notifications by to account toAccount = {}, correlationId = {} ", phoneNumber, correlationId);
+    public ResponseEntity<List<NotificationDTO>> getNotificationsByPhoneNumber(@PathVariable String phoneNumber) {
+        log.info("Get notifications by to account toAccount = {}", phoneNumber);
         List<NotificationDTO> notifications = notificationService.getNotificationsByPhoneNumber(phoneNumber);
         return ResponseEntity.ok(notifications);
     }

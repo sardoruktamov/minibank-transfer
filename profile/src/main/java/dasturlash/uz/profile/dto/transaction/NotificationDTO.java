@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 public class NotificationDTO {
     private String id;
     private String message;
-    private String toAccount;
+    private String phoneNumber;
     private LocalDateTime createdDate;
 }
