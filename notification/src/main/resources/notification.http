@@ -1,0 +1,22 @@
+### Create card
+POST localhost:8082/api/v1/notification
+Content-Type: application/json
+
+{
+  "phoneNumber": "998910171231",
+  "message": "Test notification 1"
+}
+
+### Get card list by phoneNumber
+GET localhost:8082/api/v1/notification/998910171231
+
+
+### Using Gateway  - Get notification by id
+GET localhost:8072/api/v1/notification/dasdasdasdas
+
+### Using Gateway  - Get card list by phoneNumber 2
+GET localhost:8072/api/v1/notification/998910171231
+correlation-id: "asdasdas"
+
+### Using Gateway  - Get message
+GET localhost:8072/api/v1/notification/message
