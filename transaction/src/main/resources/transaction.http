@@ -1,0 +1,25 @@
+POST http://localhost:8084/api/v1/transaction
+Content-Type: application/json
+
+{
+  "fromCardId": "b948eec3-a9c7-4283-af43-f5cc79fadc9c",
+  "toCardId": "fdf59788-32c9-4429-ba62-7ebb19d5c08e",
+  "amount": "5000"
+}
+
+
+
+
+### Using Gateway  - Get Transction by id
+GET localhost:8072/api/v1/transaction/dasdasdasdas
+
+
+### Encrypt
+POST http://localhost:8071/encrypt
+Content-Type: text/plain
+
+my top secret value to be encrypted
+
+
+### Using Gateway  - Get message
+GET localhost:8072/api/v1/transaction/message

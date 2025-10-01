@@ -1,0 +1,18 @@
+### Test config server refresh
+POST http://localhost:8083/actuator/refresh
+Content-Type: application/json
+
+{
+
+
+}
+
+
+### Actuator shotdown
+POST  http://localhost:8083/actuator/shutdown
+Content-Type: application/json
+
+{
+
+
+}
