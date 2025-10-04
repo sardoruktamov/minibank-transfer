@@ -15,11 +15,16 @@ spring:
     show-sql: true
   #### FALLBACK
   cloud:
+    loadbalancer:
+      retry:
+        enabled: true
     openfeign:
       circuitbreaker:
         enabled: true
   profiles:
-    active: local
+    active: "dev"
+  config:
+    import: "optional:configserver:http://localhost:8071"
 accounts:
   message: "profile server message 1234"
 
