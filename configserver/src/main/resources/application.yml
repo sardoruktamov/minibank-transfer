@@ -2,15 +2,31 @@ spring:
   application:
     name: "configserver"
   profiles:
-    active: native
+    active: git
   cloud:
     config:
       server:
-        native:
-          search-locations: "classpath:/config"
+#        native:
+#          search-locations: "classpath:/config"
+        git:
+          uri: "https://github.com/sardoruktamov/config-server-properties.git"
+          username: "sardoruktamov"
+          password: yourPassword
+          default-label: "main"
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
 server:
   port: 8071
-
+#########################
+#       ACTUATOR
+#########################
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        # include: health, info, ... (bu usulda aloxida-aloxida chiqarishimiz mumkin)
 #########################
 #       EUREKA
 #########################
@@ -22,3 +38,9 @@ eureka:
     register-with-eureka: true
   instance:
     preferIpAddress: true
+
+#########################
+#       encrypt key
+#########################
+encrypt:
+  key: "MySecretKey1234!"

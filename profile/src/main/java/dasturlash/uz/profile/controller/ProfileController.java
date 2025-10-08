@@ -2,6 +2,7 @@ package dasturlash.uz.profile.controller;
 
 import dasturlash.uz.profile.dto.*;
 import dasturlash.uz.profile.service.ProfileService;
+import dasturlash.uz.profile.service.PropertyReaderService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +18,11 @@ public class ProfileController {
     private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
     @Autowired
     private ProfileService profileService;
-    @Value("${accounts.message}")
-    private String message;
+
+    @Autowired
+    private PropertyReaderService propertyReaderService;
+//    @Value("${accounts.message}")
+//    private String message;
 
     @PostMapping("")
     public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileDTO dto) {
@@ -69,7 +73,7 @@ public class ProfileController {
 
     @GetMapping("/message")
     public String getMessage() {
-        return message;
+        return propertyReaderService.getMessage();
     }
 
     public String getMessageFallback(Throwable throwable) {
