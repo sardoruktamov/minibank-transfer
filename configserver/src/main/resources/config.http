@@ -1,0 +1,14 @@
+### Encrypt
+POST http://localhost:8071/encrypt
+Content-Type: text/plain
+
+DEV-GIT-Profile  message from config server
+
+
+### Actuator refresh
+POST localhost:8071/actuator/busrefresh
+Content-Type: application/json
+
+{
+
+}
