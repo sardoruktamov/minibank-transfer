@@ -19,6 +19,13 @@ GET localhost:8072/api/v1/profile/pagination
 ### Profile detail
 GET localhost:8083/api/v1/profile/6691aef8-d2e1-483d-aca0-cbfdce4eaf0e/detail
 
+### Actuator refresh
+POST localhost:8083/actuator/refresh
+Content-Type: application/json
+
+{
+
+}
 
 ### Using Gateway - Profile detail
 GET localhost:8072/profile/api/v1/profile/c36fc968-08e0-4927-b13d-43793eb6dd34/detail
