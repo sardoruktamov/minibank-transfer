@@ -1,2 +1,2 @@
 profile:
-  message: "PROD-Profile  message from config server"
+  message: "PROD-local-Profile  message from config server"
