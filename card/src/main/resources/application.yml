@@ -5,21 +5,24 @@ spring:
   #       DATABASE
   #########################
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: 1234
+    url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}"
+    username: "${SPRING_DATASOURCE_USERNAME:postgres}"
+    password: "${SPRING_DATASOURCE_PASSWORD:1234}"
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import: "${SPRING_CONFIG_IMPORT:optional:configserver:http://localhost:8071}"
   profiles:
-    active: local
+    active: dev
   #### FALLBACK
   cloud:
     openfeign:
       circuitbreaker:
         enabled: true
+
 accounts:
   message: "Card server message 1234"
 
@@ -29,7 +32,7 @@ accounts:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8070/eureka
+      defaultZone: "${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://localhost:8070/eureka/}"
     fetch-registry: true
     register-with-eureka: true
   instance:
@@ -39,7 +42,7 @@ eureka:
 #       SERVER
 #########################
 server:
-  port: 8081
+  port: 8082
   url: "http://localhost:${server.port}"
   version: "1.0"
 
