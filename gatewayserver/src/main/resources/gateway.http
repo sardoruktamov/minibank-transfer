@@ -1,0 +1,14 @@
+### Profile pagination 1
+GET localhost:8072/profile/api/v1/profile/pagination
+### Profile pagination 1
+GET localhost:8072/profile/api/v1/profile/message
+### Profile pagination 2
+GET localhost:8072/api/v1/profile/pagination
+### Profile pagination 2
+GET localhost:8072/api/v1/profile/message
+
+### Get card list by phoneNumber
+GET localhost:8072/card/api/v1/card/message
+
+### Get card list by phoneNumber
+GET localhost:8072/api/v1/card/message

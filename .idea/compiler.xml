@@ -2,22 +2,25 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
+        <module name="gatewayserver" />
         <module name="notification" />
+        <module name="profile" />
         <module name="configserver" />
         <module name="transaction" />
         <module name="card" />
-        <module name="profile" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="card" target="17" />
       <module name="configserver" target="17" />
       <module name="eurekaserver" target="17" />
+      <module name="gatewayserver" target="17" />
       <module name="notification" target="17" />
       <module name="profile" target="17" />
       <module name="transaction" target="17" />
@@ -28,6 +31,7 @@
       <module name="card" options="-parameters" />
       <module name="configserver" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
+      <module name="gatewayserver" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="profile" options="-parameters" />
       <module name="transaction" options="-parameters" />

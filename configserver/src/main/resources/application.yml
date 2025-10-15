@@ -2,20 +2,20 @@ spring:
   application:
     name: "configserver"
   profiles:
-    active: git
+    active: native
   cloud:
     config:
       server:
-#        native:
-#          search-locations: "classpath:/config"
-        git:
-          uri: "https://github.com/sardoruktamov/config-server-properties.git"
-          username: "sardoruktamov"
-          password: yourPassword
-          default-label: "main"
-          timeout: 5
-          clone-on-start: true
-          force-pull: true
+        native:
+          search-locations: "classpath:/config"
+#        git:
+#          uri: "https://github.com/sardoruktamov/config-server-properties.git"
+#          username: "sardoruktamov"
+#          password: yourPassword
+#          default-label: "main"
+#          timeout: 5
+#          clone-on-start: true
+#          force-pull: true
 server:
   port: 8071
 #########################
