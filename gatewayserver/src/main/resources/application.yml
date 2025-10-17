@@ -2,7 +2,7 @@ spring:
   application:
     name: "gatewayserver"
   config:
-    import: "optional:configserver:http://localhost:8071"
+    import: "${SPRING_CONFIG_IMPORT:optional:configserver:http://localhost:8071}"
   cloud:
     gateway:
       server:
@@ -22,7 +22,7 @@ eureka:
     fetchRegistry: true
     registerWithEureka: true
     serviceUrl:
-      defaultZone: http://localhost:8070/eureka/
+      defaultZone: "${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://localhost:8070/eureka/}"
 
 management:
   endpoints:
