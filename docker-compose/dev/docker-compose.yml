@@ -1,0 +1,130 @@
+version: "1.1"
+
+services:
+  eurekaserver:
+    container_name: eurekaserver-container
+    image: "eurekaserver:1.0"
+    ports:
+      - 8070:8070
+    environment:
+      SPRING_APPLICATION_NAME: "eurekaserver"
+    networks:
+      - mynetwork
+
+  configserver:
+    container_name: configserver-container
+    image: "configserver:1.0"
+    ports:
+      - 8071:8071
+    environment:
+      SPRING_APPLICATION_NAME: "configserver"
+      EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE: "http://eurekaserver:8070/eureka/"
+    networks:
+      - mynetwork
+    depends_on:
+      - eurekaserver
+      - appDb
+
+  profile:
+    container_name: profile-container
+    image: "profile:1.0"
+    ports:
+      - 8081:8081
+    environment:
+      SPRING_APPLICATION_NAME: "profile"
+      SPRING_PROFILE_ACTIVE: "dev"
+      EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE: "http://eurekaserver:8070/eureka/"
+      SPRING_CONFIG_IMPORT: "optional:configserver:http://configserver:8071"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://appDb:5432/postgres"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "1234"
+    networks:
+      - mynetwork
+    depends_on:
+      - configserver
+  card:
+    container_name: card-container
+    image: "card:1.0"
+    ports:
+      - 8082:8082
+    environment:
+      SPRING_APPLICATION_NAME: "card"
+      SPRING_PROFILE_ACTIVE: "dev"
+      EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE: "http://eurekaserver:8070/eureka/"
+      SPRING_CONFIG_IMPORT: "optional:configserver:http://configserver:8071"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://appDb:5432/postgres"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "1234"
+    networks:
+      - mynetwork
+    depends_on:
+      - configserver
+  transaction:
+    container_name: transaction-container
+    image: "transaction:1.0"
+    ports:
+      - 8083:8083
+    environment:
+      SPRING_APPLICATION_NAME: "transaction"
+      SPRING_PROFILE_ACTIVE: "dev"
+      EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE: "http://eurekaserver:8070/eureka/"
+      SPRING_CONFIG_IMPORT: "optional:configserver:http://configserver:8071"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://appDb:5432/postgres"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "1234"
+    networks:
+      - mynetwork
+    depends_on:
+      - configserver
+  notification:
+    container_name: notification-container
+    image: "notification:1.0"
+    ports:
+      - 8084:8084
+    environment:
+      SPRING_APPLICATION_NAME: "notification"
+      SPRING_PROFILE_ACTIVE: "dev"
+      EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE: "http://eurekaserver:8070/eureka/"
+      SPRING_CONFIG_IMPORT: "optional:configserver:http://configserver:8071"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://appDb:5432/postgres"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "1234"
+    networks:
+      - mynetwork
+    depends_on:
+      - configserver
+
+  gatewayserver:
+    container_name: gatewayserver-container
+    image: "gatewayserver:1.0"
+    ports:
+      - 8072:8072
+    environment:
+      SPRING_APPLICATION_NAME: "gatewayserver"
+      EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE: "http://eurekaserver:8070/eureka/"
+      SPRING_CONFIG_IMPORT: "optional:configserver:http://configserver:8071"
+    networks:
+      - mynetwork
+    depends_on:
+      - configserver
+  appDb:
+    container_name: appDb-container
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: "bridge"
+volumes:
+  db_volume:
+
+
