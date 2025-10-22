@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/profile")
+@RequestMapping("/v1/profile")
 public class ProfileController {
     private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
     @Autowired
