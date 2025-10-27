@@ -15,22 +15,14 @@ public class SpringCloudGatewayRouting {
         return builder.routes()
                 .route(p -> p.path("/api/v1/card/**")
                         .filters(f -> f.rewritePath("/api/v1/card/(?<segment>.*)", "/api/v1/card/${segment}")
-                                .filter((exchange, chain) -> {
-                                    exchange.getRequest().getHeaders().add("X-Request-Source", "Gateway");
-                                    long start = System.currentTimeMillis();
-                                    return chain.filter(exchange)
-                                            .then(Mono.fromRunnable(() -> {
-                                                long end = System.currentTimeMillis();
-                                                exchange.getResponse().getHeaders()
-                                                        .add("X-Response-Time", (end-start) +" ms");
-                                            }));
-                                })
+
                         )
                         .uri("lb://CARD")
                 ).route(p -> p.path("/api/v1/profile/**")
                         .filters(f -> f.rewritePath("/api/(?<segment>.*)", "/${segment}")
                                 .addRequestHeader("X-Request-Source", "Gateway")
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+                                .circuitBreaker(config -> config.setName("profileCircuitBreaker"))
                         )
                         .uri("lb://PROFILE")
                 ).build();

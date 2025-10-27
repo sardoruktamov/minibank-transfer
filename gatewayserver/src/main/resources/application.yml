@@ -4,6 +4,9 @@ spring:
   config:
     import: "${SPRING_CONFIG_IMPORT:optional:configserver:http://localhost:8071}"
   cloud:
+    circuitbreaker:
+      resilience4j:
+        enabled: true
     gateway:
       server:
         webflux:
@@ -35,6 +38,20 @@ management:
   info:
     env:
       enabled: true
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
+  instances:
+    cardCircuitBreaker:
+      baseConfig: default
+    profileCircuitBreaker:
+      base-config: default
+
 
 info:
   app:
