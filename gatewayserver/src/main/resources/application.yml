@@ -8,6 +8,9 @@ spring:
       resilience4j:
         enabled: true
     gateway:
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
       server:
         webflux:
           discovery:
@@ -52,6 +55,18 @@ resilience4j.circuitbreaker:
     profileCircuitBreaker:
       base-config: default
 
+resilience4j.timelimiter:
+  instances:
+    cardCircuitBreaker:
+      timeout-duration: 6s
+
+logging:
+  level:
+    org.springframework.cloud.gateway.filter.factory.RetryGatewayFilterFactory: DEBUG
+    reactor.netty.http.client: DEBUG
+    dasturlash:
+      uz:
+        gatewayserver: DEBUG
 
 info:
   app:
