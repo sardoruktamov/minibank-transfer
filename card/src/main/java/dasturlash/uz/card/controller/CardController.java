@@ -89,4 +89,15 @@ public class CardController {
     public String message() {
         return cardMessageService.getMessage();
     }
+
+    @GetMapping("/message/{id}")
+    public String message(@PathVariable("id") int id) {
+        log.info(" Income request ");
+
+        if (id == 1) {
+            return cardMessageService.getMessage();
+        } else {
+            throw new RuntimeException("Exception from car service");
+        }
+    }
 }
