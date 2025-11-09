@@ -1,5 +1,6 @@
 # For Java 17, try this
-FROM openjdk:17-jdk-slim-buster
+#FROM openjdk:17-jdk-slim-buster
+FROM eclipse-temurin:17-jdk-jammy
 
 COPY  target/eurekaserver-0.0.1-SNAPSHOT.jar /eurekaserver.jar
 

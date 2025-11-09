@@ -35,6 +35,8 @@ server:
   port: 8081
   url: "http://localhost:${server.port}"
   version: "1.0"
+profile:
+  message: "Hello from profile service!"
 
 #########################
 #       EUREKA

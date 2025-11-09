@@ -1,6 +1,6 @@
 -- build project
 mvn clean package
 -- create image
-docker build -t card:1.0 --file Dockerfile .
+docker build -t card:2.0 --file Dockerfile .
 -- create container from image and run
 docker run -d -p 8080:8080 -v from:/attaches --name container-name image-name
